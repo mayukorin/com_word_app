@@ -17,3 +17,12 @@ services:
             - "8000:8000"
         depends_on: 
             - db
+    front:
+        build:
+            context: ./frontend
+        # command: "npm run serve"
+        volumes:
+            - .:/com_word_app
+        stdin_open: true
+        ports:
+            - "8080:8080"
