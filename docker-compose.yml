@@ -20,7 +20,7 @@ services:
     front:
         build:
             context: ./frontend
-        # command: "npm run serve"
+        command: "npm run serve"
         volumes:
             - .:/com_word_app
         stdin_open: true
