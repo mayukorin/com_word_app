@@ -6,4 +6,4 @@ COPY  ./package*.json /com_word_app/frontend/
 RUN npm install
 COPY . .
 RUN npm run build
-# EXPOSE 8080
+EXPOSE 8080
