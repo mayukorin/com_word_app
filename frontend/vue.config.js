@@ -4,8 +4,8 @@ module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? "/static" : "/",
   configureWebpack: {
     devServer: {
-      port: 8080,
-      disableHostCheck: true,
+      //port: 8080,
+      //disableHostCheck: true,
       watchOptions: {
         poll: true,
       },
