@@ -17,6 +17,12 @@ export default {
     components: {
         Button,
     },
+    props: {
+        onanalyze: {
+            type: Function,
+            required: true
+        }
+    },
     data() {
         return {
             form: {
@@ -32,7 +38,7 @@ export default {
     methods: {
         handleClick() {
             if (!this.$refs.form.validate()) return;
-            console.log(this.form.sentence);
+            return this.onanalyze({sentence: this.form.sentence});
         }
     }
 }
