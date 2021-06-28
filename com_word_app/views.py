@@ -24,11 +24,10 @@ class SentenceAnalyzeView(views.APIView):
             cnt_list.append(f[1])
         print(word_list)
         print(cnt_list)
-        res_list = [
-            {
+        res_list = {
                 'words' : word_list,
                 'cnt' : cnt_list,
-            }
+                }
 
-        ]
+        
         return Response(res_list, status=status.HTTP_200_OK)
