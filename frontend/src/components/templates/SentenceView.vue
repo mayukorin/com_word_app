@@ -6,7 +6,7 @@
                     <SentenceCard />
                 </v-col>
                 <v-col cols="12" md="6">
-                    <WordGraph />
+                    <WordGraphFrame />
                 </v-col>
             </v-row>
         </v-container>
@@ -14,12 +14,12 @@
 </template>
 <script>
 import SentenceCard from "@/components/organisms/SentenceCard";
-import WordGraph from "@/components/organisms/WordGraph";
+import WordGraphFrame from "@/components/organisms/WordGraphFrame";
 export default {
     name: "SentenceView",
     components: {
         SentenceCard,
-        WordGraph
+        WordGraphFrame
     }
 }
 </script>
