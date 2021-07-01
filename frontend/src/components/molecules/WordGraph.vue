@@ -1,9 +1,11 @@
 <script>
 
-import { Bar } from 'vue-chartjs';
+import { Bar, mixins } from 'vue-chartjs';
+
 export default {
     name: 'WordGraph',
     extends: Bar,
+    mixins: [mixins.reactiveProp],
     props: {
         wordList: {
             type: Array,
@@ -14,15 +16,16 @@ export default {
             required: false
         }
     },
-
     data () {
     return {
-      data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+      chartData: {
+        //labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        labels: this.wordList,
         datasets: [
           {
             label: 'Bar Dataset',
-            data: [10, 20, 30, 40, 50, 30],
+            //data: [10, 20, 30, 40, 50, 30],
+            data: this.cntList,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
@@ -41,14 +44,6 @@ export default {
             ],
             borderWidth: 1
           },
-          {
-            label: 'Line Dataset',
-            data: [10, 50, 20, 30, 30, 40],
-            borderColor: '#CFD8DC',
-            fill: false,
-            type: 'line',
-            lineTension: 0.3,
-          }
         ]
       },
       options: {
@@ -56,7 +51,7 @@ export default {
           xAxes: [{
             scaleLabel: {
               display: true,
-              labelString: 'Month'
+              labelString: '出現回数'
             }
           }],
           yAxes: [{
@@ -70,7 +65,7 @@ export default {
     }
   },
   mounted () {
-    this.renderChart(this.data, this.options)
+    this.renderChart(this.chartData, this.options)
   }
 
 }
