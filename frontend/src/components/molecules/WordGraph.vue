@@ -14,8 +14,17 @@ export default {
         cntList: {
             type: Array,
             required: false
+        },
+        chartData: {
+          type: Object,
+          required: false
+        },
+        options: {
+          type: Object,
+          required: false
         }
     },
+    /*
     data () {
     return {
       chartData: {
@@ -64,6 +73,7 @@ export default {
       }
     }
   },
+  */
   mounted () {
     this.renderChart(this.chartData, this.options)
   }
