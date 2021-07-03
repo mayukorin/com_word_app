@@ -1,7 +1,7 @@
 <template>
     <div>
      <!-- グラフを描画するのは，子供にして，wordGraphはdataをstoreから持ってくる．propsのメソッドをcomputedに入れられたら，変更検知できるため-->
-     <WordGraph :chart-data="GetWordList" :options="GetCntList"/>
+     <WordGraph :chart-data="GetWordList" :options="GetCntList"  ref="child"/>
     <!--
         <WordGraph v-if="loaded" :word-list="wordList" :cnt-list="cntList" />  
         -->
@@ -73,10 +73,23 @@ export default {
                         stepSize: 10,
                         }
                     }]
-                }
+                },
+                onClick: this.clickHandler,
             }
             return optionObject
+        },
+    },
+    methods: {
+        go: function() {
+            console.log("猫になりたい");
+        },
+        clickHandler: function(event) {
+            console.log("フェイクファー");
+            console.log(this.$refs.child._data._chart.getElementAtEvent(event));
+            console.log(event);
+            //this.$refs.child.$emit('gogo');// 実行されないっぽい
+            //console.log(this.$refs.child.getElementAtEvent(event));
         }
-    }
+    },
 }
 </script>

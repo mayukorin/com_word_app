@@ -24,6 +24,11 @@ export default {
           required: false
         }
     },
+    data() {
+      return {
+        chartObject: null
+      }
+    },
     /*
     data () {
     return {
@@ -75,8 +80,14 @@ export default {
   },
   */
   mounted () {
-    this.renderChart(this.chartData, this.options)
-  }
+    this.chartObject = this.renderChart(this.chartData, this.options)
+    console.log(this.chartObject);
+  },
+  methods: {
+        gogo: function() {
+            console.log("君がいなくなった日々も");
+        },
+    },
 
 }
 </script>
