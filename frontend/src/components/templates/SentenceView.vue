@@ -2,8 +2,8 @@
     <div id="sentence-view">
         <v-container class="my-5">
             <v-row>
-                <v-col cols="12" md="6">
-                    <SentenceCard />
+                <v-col cols="12" md="6" @click="go">
+                    <SentenceCard/>
                 </v-col>
                 <v-col cols="12" md="6">
                     <WordGraphFrame />
@@ -20,6 +20,11 @@ export default {
     components: {
         SentenceCard,
         WordGraphFrame
-    }
+    },
+    methods: {
+        go: function() {
+            console.log("猫になりたい");
+        }
+    },
 }
 </script>
