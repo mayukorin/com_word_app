@@ -14,17 +14,8 @@ export default {
     components: {
         WordGraph
     },
-    /*
-    computed: {
-        chartData: function() {
-
-        }
-    }
-    */
     computed: {
         GetWordList: function() {
-            //console.log(this.$store.state.analyze.words);
-            //return this.$store.state.analyze.words;
             const chartDataObject = {
                 //labels: ['January', 'February', 'March', 'April', 'May', 'June'],
                 labels: this.$store.state.analyze.words,
@@ -57,8 +48,6 @@ export default {
             return chartDataObject;
         },
         GetCntList: function() {
-            //console.log(this.$store.state.analyze.cnt);
-            //return this.$store.state.analyze.cnt;
             const optionObject = {
                 scales: {
                     xAxes: [{
@@ -84,11 +73,10 @@ export default {
             console.log("猫になりたい");
         },
         clickHandler: function(event) {
-            console.log("フェイクファー");
-            console.log(this.$refs.child._data._chart.getElementAtEvent(event));
-            console.log(event);
-            //this.$refs.child.$emit('gogo');// 実行されないっぽい
-            //console.log(this.$refs.child.getElementAtEvent(event));
+            const elements = this.$refs.child._data._chart.getElementAtEvent(event);
+            if (elements.length) {
+                console.log(elements[0]._model.label); // これで，ラベルを取り出せる
+            }
         }
     },
 }
