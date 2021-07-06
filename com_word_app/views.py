@@ -25,10 +25,11 @@ class SentenceAnalyzeView(views.APIView):
             if search_response:
                 try:
                     # wiki_page = wikipedia.page(search_response[0])
-                    wiki_page = wikipedia.page("Dog")
+                    wiki_page = wikipedia.page(search_response[0])
                     wiki_url = wiki_page.url
-                except Exception as e:
+                except wikipedia.DisambiguationError as e:
                     wiki_url = "エラー発生"
+                    print(e.options)
             print(wiki_url)
             word_list.append(f[0])
             cnt_list.append(f[1])
