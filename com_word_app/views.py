@@ -16,6 +16,8 @@ class SentenceAnalyzeView(views.APIView):
         fd = fd.most_common(10)
         word_list = []
         cnt_list = []
+        url_list = []
+        words_and_urls_list = []
         print(fd)
         for f in fd:
             print(f)
@@ -28,17 +30,27 @@ class SentenceAnalyzeView(views.APIView):
                     wiki_page = wikipedia.page(search_response[0])
                     wiki_url = wiki_page.url
                 except wikipedia.DisambiguationError as e:
-                    wiki_url = "エラー発生"
-                    print(e.options)
+                    # print(e.options)
+                    # wiki_page = wikipedia.page(e.options[0])
+                    # wiki_url = wiki_page.url
+                    wiki_url = ""
             print(wiki_url)
             word_list.append(f[0])
             cnt_list.append(f[1])
+            url_list.append(wiki_url)
         print(word_list)
         print(cnt_list)
+        words_and_urls_dict = {}
+        words_and_urls_dict['words'] = word_list
+        words_and_urls_dict['urls'] = url_list
+        words_and_urls_list.append(words_and_urls_dict)
+        print(words_and_urls_list)
         res_list = {
-                'words' : word_list,
-                'cnt' : cnt_list,
-                }
+            'words' : word_list,
+            'cnt' : cnt_list,
+            'urls': url_list,
+            'words_and_urls': words_and_urls_list,
+        }
 
         
         return Response(res_list, status=status.HTTP_200_OK)

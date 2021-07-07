@@ -14,6 +14,12 @@ export default {
     components: {
         WordGraph
     },
+    data () {
+        return {
+            // ここにurlsいれちゃうと，監視できない
+            // 
+        }
+    },
     computed: {
         GetWordList: function() {
             const chartDataObject = {
