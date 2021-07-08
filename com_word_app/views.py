@@ -43,13 +43,12 @@ class SentenceAnalyzeView(views.APIView):
         words_and_urls_dict = {}
         words_and_urls_dict['words'] = word_list
         words_and_urls_dict['urls'] = url_list
-        words_and_urls_list.append(words_and_urls_dict)
-        print(words_and_urls_list)
+        print(words_and_urls_dict)
         res_list = {
             'words' : word_list,
             'cnt' : cnt_list,
             'urls': url_list,
-            'words_and_urls': words_and_urls_list,
+            'words_and_urls': words_and_urls_dict,
         }
 
         

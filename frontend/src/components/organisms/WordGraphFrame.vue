@@ -18,13 +18,17 @@ export default {
         return {
             // ここにurlsいれちゃうと，監視できない
             // 
+            url_list: this.$store.state.analyze.words_and_urls['urls'],
+            word_list: this.$store.state.analyze.words_and_urls['words'],
         }
     },
     computed: {
         GetWordList: function() {
             const chartDataObject = {
                 //labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                labels: this.$store.state.analyze.words,
+                //labels: this.$store.state.analyze.words,
+                //labels: this.$store.state.analyze.words_and_urls['words'],
+                labels: this.$store.state.analyze.words_and_urls['words'],
                 datasets: [
                     {
                         label: 'Bar Dataset',
@@ -76,12 +80,18 @@ export default {
     },
     methods: {
         go: function() {
-            console.log("猫になりたい");
+            //console.log("猫になりたいYo");
+            console.log(this.$store.state.analyze.words_and_urls);
         },
         clickHandler: function(event) {
             const elements = this.$refs.child._data._chart.getElementAtEvent(event);
             if (elements.length) {
+                //console.log(this.$store.state.analyze.words_and_urls['words']);
+                //const label_name = this.$store.state.analyze.words_and_urls['words'];
+                //console.log(this.$store.dispatch("analyze/searhIndex", {'word': elements[0]._model.label}));
                 console.log(elements[0]._model.label); // これで，ラベルを取り出せる
+                console.log("aaaaaaaaaaaa");
+                console.log(this.url_list);
             }
         }
     },

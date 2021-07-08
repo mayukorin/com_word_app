@@ -10,7 +10,7 @@ const analyzeModule = {
     words:[],
     cnt: [],
     urls: [],
-    words_and_urls:[],
+    words_and_urls:{},
   },
   mutations: {
     set(state, payload) {
@@ -23,8 +23,15 @@ const analyzeModule = {
       state.words = []
       state.cnt = []
       state.urls = []
-      state.words_and_urls = []
+      state.words_and_urls = {}
     },
+    findIndex(state, payload) {
+      console.log("den")
+      console.log(payload.word)
+      console.log(state.words_and_urls['words'])
+      console.log(state.words_and_urls['words'].indexOf(payload.word));
+      return state.words_and_urls['words'].indexOf(payload.word);
+    }
   },
   actions: {
     execute(context, payload) {
@@ -42,9 +49,9 @@ const analyzeModule = {
         context.commit("set", {words: response.data.words, cnt: response.data.cnt, urls: response.data.urls, words_and_urls:response.data.words_and_urls});
       })
     },
-    findIndex(context, payload) {
+    searhIndex(context, payload) {
       // 特定のword のインデックスを返す
-      return state.words.indexOf(payload.word);
+      return context.commit("findIndex", {word: payload.word});
     }
   }
 }
