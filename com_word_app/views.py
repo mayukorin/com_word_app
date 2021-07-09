@@ -18,6 +18,7 @@ class SentenceAnalyzeView(views.APIView):
         cnt_list = []
         url_list = []
         words_and_urls_list = []
+        word_url_dict = {}
         print(fd)
         for f in fd:
             print(f)
@@ -34,6 +35,7 @@ class SentenceAnalyzeView(views.APIView):
                     # wiki_page = wikipedia.page(e.options[0])
                     # wiki_url = wiki_page.url
                     wiki_url = ""
+            word_url_dict[f[0]] = wiki_url
             print(wiki_url)
             word_list.append(f[0])
             cnt_list.append(f[1])
@@ -49,6 +51,7 @@ class SentenceAnalyzeView(views.APIView):
             'cnt' : cnt_list,
             'urls': url_list,
             'words_and_urls': words_and_urls_dict,
+            'word_url_dict' : word_url_dict
         }
 
         

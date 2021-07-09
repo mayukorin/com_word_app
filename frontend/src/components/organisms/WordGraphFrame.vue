@@ -20,15 +20,35 @@ export default {
             // 
             url_list: this.$store.state.analyze.words_and_urls['urls'],
             word_list: this.$store.state.analyze.words_and_urls['words'],
+            word_url_dict: {}
         }
     },
+    /*
+    mounted() {
+        this.$store.watch(
+            (state, getters) => getters['analyze/word_url_dict'],
+            (newValue) =>{
+                console.log("典キノコ")
+                console.log(newValue);
+                this.word_url_dict = newValue;
+            }
+        )
+    },
+    */
     computed: {
         GetWordList: function() {
+            const word_url_dict2 = this.$store.state.analyze.word_url_dict;
+            //this.word_url_dict = word_url_dict2;
+            if (word_url_dict2 != null) {
+                console.log("debug")
+                console.log(Object.keys(word_url_dict2));
+            }
             const chartDataObject = {
                 //labels: ['January', 'February', 'March', 'April', 'May', 'June'],
                 //labels: this.$store.state.analyze.words,
                 //labels: this.$store.state.analyze.words_and_urls['words'],
-                labels: this.$store.state.analyze.words_and_urls['words'],
+                //labels: this.$store.state.analyze.words_and_urls['words'],
+                labels: Object.keys(word_url_dict2),
                 datasets: [
                     {
                         label: 'Bar Dataset',

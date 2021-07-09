@@ -11,6 +11,10 @@ const analyzeModule = {
     cnt: [],
     urls: [],
     words_and_urls:{},
+    word_url_dict:{},
+  },
+  getters: {
+    word_url_dict(state) { return state.word_url_dict }
   },
   mutations: {
     set(state, payload) {
@@ -18,12 +22,16 @@ const analyzeModule = {
       state.cnt = payload.cnt
       state.urls = payload.urls
       state.words_and_urls = payload.words_and_urls
+      state.word_url_dict = payload.word_url_dict
+      console.log("ああ")
+      console.log(payload.word_url_dict)
     },
     clear(state) {
       state.words = []
       state.cnt = []
       state.urls = []
       state.words_and_urls = {}
+      state.word_url_dict = {}
     },
     findIndex(state, payload) {
       console.log("den")
@@ -46,7 +54,7 @@ const analyzeModule = {
         console.log(response.data);
         console.log(response.data.cnt);
         console.log(response.data.words);
-        context.commit("set", {words: response.data.words, cnt: response.data.cnt, urls: response.data.urls, words_and_urls:response.data.words_and_urls});
+        context.commit("set", {words: response.data.words, cnt: response.data.cnt, urls: response.data.urls, words_and_urls:response.data.words_and_urls, word_url_dict: response.data.word_url_dict});
       })
     },
     searhIndex(context, payload) {
