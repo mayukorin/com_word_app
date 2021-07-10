@@ -20,7 +20,7 @@ export default {
             // 
             url_list: this.$store.state.analyze.words_and_urls['urls'],
             word_list: this.$store.state.analyze.words_and_urls['words'],
-            word_url_dict: {}
+            word_url_dict: null
         }
     },
     /*
@@ -38,7 +38,7 @@ export default {
     computed: {
         GetWordList: function() {
             const word_url_dict2 = this.$store.state.analyze.word_url_dict;
-            //this.word_url_dict = word_url_dict2;
+            this.set_word_url_dict(word_url_dict2);
             if (word_url_dict2 != null) {
                 console.log("debug")
                 console.log(Object.keys(word_url_dict2));
@@ -100,19 +100,18 @@ export default {
     },
     methods: {
         go: function() {
-            //console.log("猫になりたいYo");
             console.log(this.$store.state.analyze.words_and_urls);
         },
         clickHandler: function(event) {
             const elements = this.$refs.child._data._chart.getElementAtEvent(event);
             if (elements.length) {
-                //console.log(this.$store.state.analyze.words_and_urls['words']);
-                //const label_name = this.$store.state.analyze.words_and_urls['words'];
-                //console.log(this.$store.dispatch("analyze/searhIndex", {'word': elements[0]._model.label}));
                 console.log(elements[0]._model.label); // これで，ラベルを取り出せる
                 console.log("aaaaaaaaaaaa");
                 console.log(this.url_list);
             }
+        },
+        set_word_url_dict: function(word_url_dict) {
+            this.word_url_dict = word_url_dict;
         }
     },
 }
