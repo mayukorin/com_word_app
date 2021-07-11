@@ -105,9 +105,11 @@ export default {
         clickHandler: function(event) {
             const elements = this.$refs.child._data._chart.getElementAtEvent(event);
             if (elements.length) {
-                console.log(elements[0]._model.label); // これで，ラベルを取り出せる
+                const click_word = elements[0]._model.label;
+                console.log(click_word); // これで，ラベルを取り出せる
                 console.log("aaaaaaaaaaaa");
-                console.log(this.url_list);
+                console.log(this.word_url_dict);
+                console.log(this.word_url_dict[click_word])
             }
         },
         set_word_url_dict: function(word_url_dict) {
