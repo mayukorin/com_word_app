@@ -110,6 +110,7 @@ export default {
                 console.log("aaaaaaaaaaaa");
                 console.log(this.word_url_dict);
                 console.log(this.word_url_dict[click_word])
+                window.open(this.word_url_dict[click_word], '_blank')
             }
         },
         set_word_url_dict: function(word_url_dict) {
