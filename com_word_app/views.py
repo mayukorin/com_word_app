@@ -34,14 +34,11 @@ class SentenceAnalyzeView(views.APIView):
                     # print(e.options)
                     # wiki_page = wikipedia.page(e.options[0])
                     # wiki_url = wiki_page.url
-                    wiki_url = ""
+                    wiki_url = (wikipedia.page(e.options[0])).url
             word_url_dict[f[0]] = wiki_url
-            print(wiki_url)
             word_list.append(f[0])
             cnt_list.append(f[1])
             url_list.append(wiki_url)
-        print(word_list)
-        print(cnt_list)
         words_and_urls_dict = {}
         words_and_urls_dict['words'] = word_list
         words_and_urls_dict['urls'] = url_list
