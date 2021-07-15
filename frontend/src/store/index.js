@@ -12,6 +12,7 @@ const analyzeModule = {
     urls: [],
     words_and_urls:{},
     word_url_dict:{},
+    result:{},
   },
   getters: {
     word_url_dict(state) { return state.word_url_dict }
@@ -23,6 +24,7 @@ const analyzeModule = {
       state.urls = payload.urls
       state.words_and_urls = payload.words_and_urls
       state.word_url_dict = payload.word_url_dict
+      state.result = payload.result
       console.log("ああ")
       console.log(payload.word_url_dict)
     },
@@ -32,6 +34,7 @@ const analyzeModule = {
       state.urls = []
       state.words_and_urls = {}
       state.word_url_dict = {}
+      state.result = {}
     },
     findIndex(state, payload) {
       console.log("den")
@@ -51,10 +54,8 @@ const analyzeModule = {
           sentence: payload.sentence
         },
       }).then((response) => {
-        console.log(response.data);
-        console.log(response.data.cnt);
-        console.log(response.data.words);
-        context.commit("set", {words: response.data.words, cnt: response.data.cnt, urls: response.data.urls, words_and_urls:response.data.words_and_urls, word_url_dict: response.data.word_url_dict});
+        console.log(response.data.result);
+        context.commit("set", {words: response.data.words, cnt: response.data.cnt, urls: response.data.urls, words_and_urls:response.data.words_and_urls, word_url_dict: response.data.word_url_dict, result: response.data.result});
       })
     },
     searhIndex(context, payload) {

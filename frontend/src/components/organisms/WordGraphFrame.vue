@@ -37,23 +37,27 @@ export default {
     */
     computed: {
         GetWordList: function() {
-            const word_url_dict2 = this.$store.state.analyze.word_url_dict;
-            this.set_word_url_dict(word_url_dict2);
-            if (word_url_dict2 != null) {
-                console.log("debug")
-                console.log(Object.keys(word_url_dict2));
+            //const word_url_dict2 = this.$store.state.analyze.word_url_dict;
+            const result = this.$store.state.analyze.result;
+            this.set_word_url_dict(result);
+            const result_words = Object.keys(result);
+            const result_cnt = []
+            for(const url_and_cnt of Object.values(result)) {
+                result_cnt.push(url_and_cnt[1])
             }
+            //console.log(this.$store.state.analyze.result)
+            console.log(result_cnt)
             const chartDataObject = {
                 //labels: ['January', 'February', 'March', 'April', 'May', 'June'],
                 //labels: this.$store.state.analyze.words,
                 //labels: this.$store.state.analyze.words_and_urls['words'],
                 //labels: this.$store.state.analyze.words_and_urls['words'],
-                labels: Object.keys(word_url_dict2),
+                labels: result_words,
                 datasets: [
                     {
                         label: 'Bar Dataset',
                         //data: [10, 20, 30, 40, 50, 30],
-                        data: this.$store.state.analyze.cnt,
+                        data: result_cnt,
                         backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -113,7 +117,12 @@ export default {
                 window.open(this.word_url_dict[click_word], '_blank')
             }
         },
-        set_word_url_dict: function(word_url_dict) {
+        set_word_url_dict: function(result) {
+            const word_url_dict = {}
+            // resultがiterableじゃないから，できないっぽい
+            for(const word_and_url_and_cnt of result) {
+               console.log(word_and_url_and_cnt)
+            }
             this.word_url_dict = word_url_dict;
         }
     },
