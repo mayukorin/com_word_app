@@ -120,9 +120,10 @@ export default {
         set_word_url_dict: function(result) {
             const word_url_dict = {}
             // resultがiterableじゃないから，できないっぽい
-            for(const word_and_url_and_cnt of result) {
-               console.log(word_and_url_and_cnt)
-            }
+            Object.keys(result).forEach(function(key) {
+                word_url_dict[key] = result[key][0]
+            })
+            console.log(word_url_dict)
             this.word_url_dict = word_url_dict;
         }
     },
