@@ -45,6 +45,10 @@ export default {
             for(const url_and_cnt of Object.values(result)) {
                 result_cnt.push(url_and_cnt[1])
             }
+            console.log("確認")
+            for(const word of Object.keys(result)) {
+                console.log(word);
+            }
             //console.log(this.$store.state.analyze.result)
             console.log(result_cnt)
             const chartDataObject = {
@@ -120,9 +124,14 @@ export default {
         set_word_url_dict: function(result) {
             const word_url_dict = {}
             // resultがiterableじゃないから，できないっぽい
-            Object.keys(result).forEach(function(key) {
-                word_url_dict[key] = result[key][0]
-            })
+            for(const word of Object.keys(result)) {
+               word_url_dict[word] = result[word][0]
+            }
+            /*
+            Object.keys(result).forEach(function(a) {
+                console.log(a);
+            });
+            */
             console.log(word_url_dict)
             this.word_url_dict = word_url_dict;
         }
