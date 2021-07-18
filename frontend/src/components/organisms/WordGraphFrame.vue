@@ -18,8 +18,8 @@ export default {
         return {
             // ここにurlsいれちゃうと，監視できない
             // 
-            url_list: this.$store.state.analyze.words_and_urls['urls'],
-            word_list: this.$store.state.analyze.words_and_urls['words'],
+            // url_list: this.$store.state.analyze.words_and_urls['urls'],
+            // word_list: this.$store.state.analyze.words_and_urls['words'],
             word_url_dict: null
         }
     },
@@ -107,9 +107,6 @@ export default {
         },
     },
     methods: {
-        go: function() {
-            console.log(this.$store.state.analyze.words_and_urls);
-        },
         clickHandler: function(event) {
             const elements = this.$refs.child._data._chart.getElementAtEvent(event);
             if (elements.length) {

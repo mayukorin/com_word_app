@@ -46,11 +46,6 @@ class SentenceAnalyzeView(views.APIView):
         words_and_urls_dict['urls'] = url_list
         print(result)
         res_list = {
-            'words' : word_list,
-            'cnt' : cnt_list,
-            'urls': url_list,
-            'words_and_urls': words_and_urls_dict,
-            'word_url_dict' : word_url_dict,
             'result': result
         }
 
