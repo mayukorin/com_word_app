@@ -7,32 +7,13 @@ Vue.use(Vuex);
 const analyzeModule = {
   namespaced: true,
   state: {
-    // words:[],
-    // cnt: [],
-    // urls: [],
-    // words_and_urls:{},
-    // word_url_dict:{},
     result:{},
   },
   mutations: {
     set(state, payload) {
-      /*
-      /state.words = payload.words
-      state.cnt = payload.cnt
-      state.urls = payload.urls
-      state.words_and_urls = payload.words_and_urls
-      state.word_url_dict = payload.word_url_dict
-      */
       state.result = payload.result
     },
     clear(state) {
-      /*
-      state.words = []
-      state.cnt = []
-      state.urls = []
-      state.words_and_urls = {}
-      state.word_url_dict = {}
-      */
       state.result = {}
     },
   },

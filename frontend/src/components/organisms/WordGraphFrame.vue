@@ -16,28 +16,12 @@ export default {
     },
     data () {
         return {
-            // ここにurlsいれちゃうと，監視できない
-            // 
-            // url_list: this.$store.state.analyze.words_and_urls['urls'],
-            // word_list: this.$store.state.analyze.words_and_urls['words'],
             word_url_dict: null
         }
     },
-    /*
-    mounted() {
-        this.$store.watch(
-            (state, getters) => getters['analyze/word_url_dict'],
-            (newValue) =>{
-                console.log("典キノコ")
-                console.log(newValue);
-                this.word_url_dict = newValue;
-            }
-        )
-    },
-    */
     computed: {
         GetWordList: function() {
-            //const word_url_dict2 = this.$store.state.analyze.word_url_dict;
+        
             const result = this.$store.state.analyze.result;
             this.set_word_url_dict(result);
             const result_words = Object.keys(result);
@@ -49,18 +33,12 @@ export default {
             for(const word of Object.keys(result)) {
                 console.log(word);
             }
-            //console.log(this.$store.state.analyze.result)
             console.log(result_cnt)
             const chartDataObject = {
-                //labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                //labels: this.$store.state.analyze.words,
-                //labels: this.$store.state.analyze.words_and_urls['words'],
-                //labels: this.$store.state.analyze.words_and_urls['words'],
                 labels: result_words,
                 datasets: [
                     {
-                        label: 'Bar Dataset',
-                        //data: [10, 20, 30, 40, 50, 30],
+                        label: '出現回数',
                         data: result_cnt,
                         backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -91,7 +69,7 @@ export default {
                     xAxes: [{
                         scaleLabel: {
                         display: true,
-                        labelString: '出現回数'
+                        labelString: '頻出単語'
                         }
                     }],
                     yAxes: [{
@@ -124,11 +102,6 @@ export default {
             for(const word of Object.keys(result)) {
                word_url_dict[word] = result[word][0]
             }
-            /*
-            Object.keys(result).forEach(function(a) {
-                console.log(a);
-            });
-            */
             console.log(word_url_dict)
             this.word_url_dict = word_url_dict;
         }
