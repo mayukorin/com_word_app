@@ -89,20 +89,14 @@ export default {
             const elements = this.$refs.child._data._chart.getElementAtEvent(event);
             if (elements.length) {
                 const click_word = elements[0]._model.label;
-                console.log(click_word); // これで，ラベルを取り出せる
-                console.log("aaaaaaaaaaaa");
-                console.log(this.word_url_dict);
-                console.log(this.word_url_dict[click_word])
                 window.open(this.word_url_dict[click_word], '_blank')
             }
         },
         set_word_url_dict: function(result) {
             const word_url_dict = {}
-            // resultがiterableじゃないから，できないっぽい
             for(const word of Object.keys(result)) {
                word_url_dict[word] = result[word][0]
             }
-            console.log(word_url_dict)
             this.word_url_dict = word_url_dict;
         }
     },
