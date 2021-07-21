@@ -2,9 +2,6 @@
     <div>
      <!-- グラフを描画するのは，子供にして，wordGraphはdataをstoreから持ってくる．propsのメソッドをcomputedに入れられたら，変更検知できるため-->
      <WordGraph :chart-data="GetWordList" :options="GetCntList"  ref="child"/>
-    <!--
-        <WordGraph v-if="loaded" :word-list="wordList" :cnt-list="cntList" />  
-        -->
     </div>
 </template>
 <script>
