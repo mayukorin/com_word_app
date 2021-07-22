@@ -11,13 +11,15 @@ import wikipedia
 class SentenceAnalyzeView(views.APIView):
 
     def post(self, request, *args, **kwargs):
-        token = word_tokenize(request.data["sentence"])
-        fd = nltk.FreqDist(token)
+        sentence = word_tokenize(request.data["sentence"])
+        fd = nltk.FreqDist(sentence)
         fd = fd.most_common(10)
         result = {}
-        for f in fd:
+        for word_and_count in fd:
+            word = word_and_count[0]
+            count = word_and_count[1]
             wiki_url = ""
-            search_response = wikipedia.search(f[0])
+            search_response = wikipedia.search(word)
             if search_response:
                 try:
                     wiki_page = wikipedia.page(search_response[0])
@@ -26,7 +28,7 @@ class SentenceAnalyzeView(views.APIView):
                     
                     wiki_url = (wikipedia.page(e.options[0])).url
         
-            result[f[0]] = [wiki_url, f[1]]
+            result[word] = [wiki_url, count]
 
         print(result)
         res_list = {
