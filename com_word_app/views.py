@@ -14,12 +14,12 @@ class SentenceAnalyzeView(views.APIView):
 
     def post(self, request, *args, **kwargs):
         sentence = request.data["sentence"]
+        
         # ノイズ除去
         for sw in StopWord.objects.all():
             remove_text = '\s' + sw.word + '\s'
-            print(remove_text)
-        sentence = re.sub(remove_text, ' ', sentence)
-        print(sentence)
+            sentence = re.sub(remove_text, ' ', sentence)
+
         sentence = word_tokenize(sentence)
         fd = nltk.FreqDist(sentence)
         fd = fd.most_common(10)

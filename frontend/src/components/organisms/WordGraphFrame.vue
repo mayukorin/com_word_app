@@ -19,18 +19,16 @@ export default {
     computed: {
         GetWordList: function() {
         
-            const result = this.$store.state.analyze.result;
+            let result = this.$store.state.analyze.result;
             this.set_word_url_dict(result);
-            const result_words = Object.keys(result);
-            const result_cnt = []
-            for(const url_and_cnt of Object.values(result)) {
+            let result_words = Object.keys(result);
+            let result_cnt = []
+            for(let url_and_cnt of Object.values(result)) {
                 result_cnt.push(url_and_cnt[1])
             }
-            console.log("確認")
-            for(const word of Object.keys(result)) {
+            for(let word of Object.keys(result)) {
                 console.log(word);
             }
-            console.log(result_cnt)
             const chartDataObject = {
                 labels: result_words,
                 datasets: [
@@ -83,14 +81,14 @@ export default {
     },
     methods: {
         clickHandler: function(event) {
-            const elements = this.$refs.child._data._chart.getElementAtEvent(event);
+            let elements = this.$refs.child._data._chart.getElementAtEvent(event);
             if (elements.length) {
-                const click_word = elements[0]._model.label;
+                let click_word = elements[0]._model.label;
                 window.open(this.word_url_dict[click_word], '_blank')
             }
         },
         set_word_url_dict: function(result) {
-            const word_url_dict = {}
+            let word_url_dict = {}
             for(const word of Object.keys(result)) {
                word_url_dict[word] = result[word][0]
             }

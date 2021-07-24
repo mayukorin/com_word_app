@@ -19,9 +19,7 @@ export default {
     },
     methods: {
         handleAnalyze(sentenceInfo) {
-            return this.$store.dispatch("analyze/execute", sentenceInfo).then(() => {
-                console.log("okkk");
-            })
+            return this.$store.dispatch("analyze/execute", sentenceInfo);
         }
     }
 }
