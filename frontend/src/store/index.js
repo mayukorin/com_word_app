@@ -7,19 +7,14 @@ Vue.use(Vuex);
 const analyzeModule = {
   namespaced: true,
   state: {
-    words:[],
-    cnt: [],
+    result:{},
   },
   mutations: {
     set(state, payload) {
-      state.words = payload.words
-      state.cnt = payload.cnt;
-      console.log("ai");
-      console.log(state.words);
+      state.result = payload.result
     },
     clear(state) {
-      state.words = []
-      state.cnt = []
+      state.result = {}
     },
   },
   actions: {
@@ -32,12 +27,10 @@ const analyzeModule = {
           sentence: payload.sentence
         },
       }).then((response) => {
-        console.log(response.data);
-        console.log(response.data.cnt);
-        console.log(response.data.words);
-        context.commit("set", {words: response.data.words, cnt: response.data.cnt});
+        console.log(response.data.result);
+        context.commit("set", {result: response.data.result});
       })
-    }
+    },
   }
 }
 

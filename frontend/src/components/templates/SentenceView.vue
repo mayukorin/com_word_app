@@ -24,6 +24,7 @@ export default {
     methods: {
         go: function() {
             console.log("猫になりたい");
+            console.log(this.$store.state.analyze.words_and_urls);
         }
     },
 }

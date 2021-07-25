@@ -81,7 +81,7 @@ export default {
   */
   mounted () {
     this.chartObject = this.renderChart(this.chartData, this.options)
-    console.log(this.chartObject);
+    //console.log(this.chartObject);
   },
   methods: {
         gogo: function() {

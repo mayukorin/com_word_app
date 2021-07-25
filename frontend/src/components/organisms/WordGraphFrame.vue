@@ -2,9 +2,6 @@
     <div>
      <!-- グラフを描画するのは，子供にして，wordGraphはdataをstoreから持ってくる．propsのメソッドをcomputedに入れられたら，変更検知できるため-->
      <WordGraph :chart-data="GetWordList" :options="GetCntList"  ref="child"/>
-    <!--
-        <WordGraph v-if="loaded" :word-list="wordList" :cnt-list="cntList" />  
-        -->
     </div>
 </template>
 <script>
@@ -14,16 +11,30 @@ export default {
     components: {
         WordGraph
     },
+    data () {
+        return {
+            word_url_dict: null
+        }
+    },
     computed: {
         GetWordList: function() {
+        
+            let result = this.$store.state.analyze.result;
+            this.set_word_url_dict(result);
+            let result_words = Object.keys(result);
+            let result_cnt = []
+            for(let url_and_cnt of Object.values(result)) {
+                result_cnt.push(url_and_cnt[1])
+            }
+            for(let word of Object.keys(result)) {
+                console.log(word);
+            }
             const chartDataObject = {
-                //labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                labels: this.$store.state.analyze.words,
+                labels: result_words,
                 datasets: [
                     {
-                        label: 'Bar Dataset',
-                        //data: [10, 20, 30, 40, 50, 30],
-                        data: this.$store.state.analyze.cnt,
+                        label: '出現回数',
+                        data: result_cnt,
                         backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -53,7 +64,7 @@ export default {
                     xAxes: [{
                         scaleLabel: {
                         display: true,
-                        labelString: '出現回数'
+                        labelString: '頻出単語'
                         }
                     }],
                     yAxes: [{
@@ -69,14 +80,19 @@ export default {
         },
     },
     methods: {
-        go: function() {
-            console.log("猫になりたい");
-        },
         clickHandler: function(event) {
-            const elements = this.$refs.child._data._chart.getElementAtEvent(event);
+            let elements = this.$refs.child._data._chart.getElementAtEvent(event);
             if (elements.length) {
-                console.log(elements[0]._model.label); // これで，ラベルを取り出せる
+                let click_word = elements[0]._model.label;
+                window.open(this.word_url_dict[click_word], '_blank')
             }
+        },
+        set_word_url_dict: function(result) {
+            let word_url_dict = {}
+            for(const word of Object.keys(result)) {
+               word_url_dict[word] = result[word][0]
+            }
+            this.word_url_dict = word_url_dict;
         }
     },
 }
