@@ -6,7 +6,7 @@
             :rules="rules.sentence"
             v-model="form.sentence"
         ></v-textarea>
-        <Button @click="handleClick">分析</Button>
+        <Button @click="handleClick" v-bind:load='myLoad'>分析</Button>
     </v-form>
 </template>
 <script>
@@ -32,13 +32,15 @@ export default {
                 sentence: [
                     v => v.length <= 1000 || '一度に分析できるのは，1000文字までです'
                 ],
-            }
+            },
+            myLoad: false,
         }
     },
     methods: {
         handleClick() {
             if (!this.$refs.form.validate()) return;
-            return this.onanalyze({sentence: this.form.sentence});
+            this.onanalyze({sentence: this.form.sentence});
+            this.myLoad = false;
         }
     }
 }
