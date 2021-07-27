@@ -6,7 +6,7 @@
             :rules="rules.sentence"
             v-model="form.sentence"
         ></v-textarea>
-        <Button @click="handleClick" v-bind:load='myLoad'>分析</Button>
+        <Button @click="handleClick" :loading='myLoad'>分析</Button>
     </v-form>
 </template>
 <script>
@@ -39,8 +39,11 @@ export default {
     methods: {
         handleClick() {
             if (!this.$refs.form.validate()) return;
-            this.onanalyze({sentence: this.form.sentence});
-            this.myLoad = false;
+            this.myLoad = true;
+            return this.onanalyze({sentence: this.form.sentence}).then(() => {
+                this.myLoad = false;
+            })
+
         }
     }
 }

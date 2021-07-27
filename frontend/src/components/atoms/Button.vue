@@ -9,7 +9,7 @@
 export default {
     name: "Button",
     props: {
-        load: {
+        loading: {
             type: Boolean,
             default: false
         }
@@ -20,10 +20,12 @@ export default {
             this.load = true;
         },
     },
+    /*
     computed: {
         loading() {
             return this.load;
         }
     }
+    */
 };
 </script>
