@@ -1,4 +1,3 @@
-from config.settings import DATABASES
 from .base import *
 import  dj_database_url
 from socket import gethostname
