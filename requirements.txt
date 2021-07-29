@@ -13,3 +13,4 @@ black==21.5b2
 flake8==3.9.2
 nltk==3.3
 wikipedia==1.4.0
+whitenoise==5.2.0
