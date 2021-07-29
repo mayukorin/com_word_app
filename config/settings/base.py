@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'djoser',
+    'corsheaders',
     'com_word_app.apps.ComWordAppConfig',
+    "django_nose",
 ]
 
 MIDDLEWARE = [
