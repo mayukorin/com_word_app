@@ -1,6 +1,6 @@
 from config.settings import DATABASES
 from .base import *
-from dj_database_url
+import  dj_database_url
 from socket import gethostname
 import django_heroku
 
