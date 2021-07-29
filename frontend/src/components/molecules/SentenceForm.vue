@@ -1,12 +1,12 @@
 <template>
     <v-form ref="form" class="mb-3">
         <v-textarea
-            counter
-            label="分析したい文章を入れてください"
+            counter="1000"
+            label="頻出単語を調べたい文章を入力してください(1000文字まで)"
             :rules="rules.sentence"
             v-model="form.sentence"
         ></v-textarea>
-        <Button @click="handleClick" :loading='myLoad'>分析</Button>
+        <Button @click="handleClick" :loading='myLoad'>調べる</Button>
     </v-form>
 </template>
 <script>

@@ -21,14 +21,12 @@ export default {
         
             let result = this.$store.state.analyze.result;
             this.set_word_url_dict(result);
-            let result_words = Object.keys(result);
+            let result_words = Object.keys(result)
             let result_cnt = []
             for(let url_and_cnt of Object.values(result)) {
                 result_cnt.push(url_and_cnt[1])
             }
-            for(let word of Object.keys(result)) {
-                console.log(word);
-            }
+            
             const chartDataObject = {
                 labels: result_words,
                 datasets: [
@@ -84,7 +82,8 @@ export default {
             let elements = this.$refs.child._data._chart.getElementAtEvent(event);
             if (elements.length) {
                 let click_word = elements[0]._model.label;
-                window.open(this.word_url_dict[click_word], '_blank')
+                if (this.word_url_dict[click_word] == '') window.alert(`${click_word}に関連するwikipediaのページがありません`)
+                else window.open(this.word_url_dict[click_word], '_blank')
             }
         },
         set_word_url_dict: function(result) {

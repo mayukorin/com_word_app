@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Navbar />
+    <Appbar />
     <v-main class="mx-4 mb-5">
       <router-view />
     </v-main>
@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import Navbar from "@/components/organisms/Navbar";
+import Appbar from "@/components/organisms/Appbar.vue";
 export default {
   name: "App",
-  components: { Navbar },
+  components: {Appbar},
 };
 </script>

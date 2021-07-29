@@ -34,15 +34,11 @@ class SentenceAnalyzeView(views.APIView):
                 print(search_response[0])
                 try:
                     wiki_page = wikipedia.page(search_response[0])
-                    print("whhhhh")
-                    print(wiki_page)
                     wiki_url = wiki_page.url
                 except wikipedia.DisambiguationError as e:
                     print(e)
-                    wiki_url = (wikipedia.page(e.options[0])).url
                 except wikipedia.PageError as e:
                     # エラーページが何か，出さないと
-                    print("??")
                     print(e)
         
             result[word] = [wiki_url, count]
