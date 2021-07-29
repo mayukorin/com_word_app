@@ -27,7 +27,7 @@ SECRET_KEY = '%^p%fg=0ns#a$nseak#oiyr3yyyt&t7y3%@%bf(i!e*9fb!q$k'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+PROJECT_NAME = 'comword'
 
 # Application definition
 
@@ -117,7 +117,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_FILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
+# STATIC_ROOT = '/car/www{}/static'.format(PROJECT_NAME)
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
